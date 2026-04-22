@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Transformavidas | Francisco Carvalho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --preto: #0d0d0d;
+            --dourado: #c9a84c;
+            --dourado-claro: #e8d5a3;
+            --cinza-escuro: #1a1a1a;
+            --cinza: #444444;
+            --branco: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* HERO COM VIDEO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1400 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--dourado-claro);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            border: 2px solid var(--dourado);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(201, 168, 76, 0.2);
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+        
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        
+        .video-caption {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dourado-claro);
+            margin-top: 1.5rem;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--dourado);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--dourado-claro);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: var(--dourado);
+            margin: 2rem auto 3rem;
+        }
+        
+        /* BONUS GRATUITOS */
+        .bonus-section {
+            background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+        }
+        
+        .bonus-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+        
+        .bonus-card {
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .bonus-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--dourado);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.15);
+        }
+        
+        .bonus-card:hover::before {
+            opacity: 1;
+        }
+        
+        .bonus-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .bonus-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .bonus-description {
+            color: var(--branco);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: var(--dourado);
+            border: 2px solid var(--dourado);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        
+        .btn:hover {
+            background: var(--dourado);
+            color: var(--preto);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+        }
+        
+        /* PRODUTOS */
+        .produtos-section {
+            background: var(--preto);
+        }
+        
+        .produtos-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+        
+        .produto-card {
+            background: linear-gradient(135deg, #1a1400 0%, #0d0d0d 100%);
+            border: 2px solid rgba(201, 168, 76, 0.4);
+            border-radius: 10px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .produto-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .produto-card:hover {
+            transform: scale(1.02);
+            border-color: var(--dourado);
+            box-shadow: 0 20px 50px rgba(201, 168, 76, 0.2);
+        }
+        
+        .produto-card:hover::after {
+            opacity: 1;
+        }
+        
+        .produto-tag {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.2);
+            color: var(--dourado);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .produto-titulo {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .produto-descricao {
+            color: var(--branco);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .produto-preco {
+            font-size: 2.5rem;
+            color: var(--dourado);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .produto-preco-anterior {
+            font-size: 1.2rem;
+            color: var(--cinza);
+            text-decoration: line-through;
+            margin-right: 1rem;
+        }
+        
+        .btn-produto {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--dourado);
+            color: var(--preto);
+            border: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-produto:hover {
+            background: var(--dourado-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.4);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--cinza-escuro);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            letter-spacing: 0.2em;
+        }
+        
+        .footer-contatos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .footer-link {
+            color: var(--dourado-claro);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-link:hover {
+            color: var(--dourado);
+        }
+        
+        .footer-copy {
+            color: var(--cinza);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .bonus-grid, .produtos-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-contatos {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="logo-text">FC Carvalho</h1>
+            <p class="tagline">Saúde · Hábitos · Finanças</p>
+            
+            <div class="video-container">
+                <video controls playsinline>
+                    <source src="lavinia_apresentacao.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+            
+            <p class="video-caption">Conheça Lavínia, sua assistente pessoal FC Transformavidas</p>
+        </div>
+    </div>
+    
+    <!-- BÔNUS GRATUITOS -->
+    <section class="bonus-section">
+        <h2 class="section-title">Bônus Gratuitos</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Comece sua transformação agora — sem gastar nada!</p>
+        
+        <div class="bonus-grid">
+            <div class="bonus-card">
+                <div class="bonus-icon">📖</div>
+                <h3 class="bonus-title">Ebook Gratuito</h3>
+                <p class="bonus-description">10 Hábitos para Emagrecer com Saúde — Dicas práticas que você pode começar hoje!</p>
+                <a href="#" class="btn">Baixar Grátis</a>
+            </div>
+            
+            <div class="bonus-card">
+                <div class="bonus-icon">📊</div>
+                <h3 class="bonus-title">Planilha Gratuita</h3>
+                <p class="bonus-description">Controle Financeiro Pessoal — Organize suas receitas, despesas e metas!</p>
+                <a href="#" class="btn">Baixar Grátis</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PRODUTOS -->
+    <section class="produtos-section">
+        <h2 class="section-title">Produtos Selecionados</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Transforme sua saúde e suas finanças com conteúdo de alta qualidade</p>
+        
+        <div class="produtos-grid">
+            <!-- PRODUTO SAÚDE -->
+            <div class="produto-card">
+                <span class="produto-tag">Saúde</span>
+                <h3 class="produto-titulo">Você Magra com Saúde</h3>
+                <p class="produto-descricao">
+                    Método completo para emagrecer de forma saudável e definitiva. Inclui cardápios personalizados, 
+                    plano de exercícios práticos e dicas para nunca mais engordar.
+                </p>
+                <div class="produto-preco">
+                    <span class="produto-preco-anterior">R$ 49,90</span>
+                    R$ 29,90
+                </div>
+                <a href="https://pay.kiwify.com.br/JL4Us4r?afid=qW3IeiV4" target="_blank" class="btn btn-produto">
+                    Quero Emagrecer com Saúde
+                </a>
+            </div>
+            
+            <!-- PRODUTO FINANÇAS -->
+            <div class="produto-card">
+                <span class="produto-tag">Finanças</span>
+                <h3 class="produto-titulo">Finanças Express</h3>
+                <p class="produto-descricao">
+                    Aprenda a investir do zero! Curso completo com 7 horas de aulas práticas, 
+                    planilhas editáveis, certificado e atualizações por 2 anos.
+                </p>
+                <div class="produto-preco">
+                    <span class="produto-preco-anterior">R$ 297,00</span>
+                    R$ 167,00
+                </div>
+                <a href="https://pay.kiwify.com.br/fY82LVp?afid=hLNDSrYz" target="_blank" class="btn btn-produto">
+                    Quero Aprender a Investir
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">FC Transformavidas</h3>
+            <div class="footer-contatos">
+                <a href="https://instagram.com/fc.transformavidas" target="_blank" class="footer-link">
+                    📱 @fc.transformavidas
+                </a>
+                <a href="https://wa.me/5566999008253" target="_blank" class="footer-link">
+                    💬 (66) 99900-8253
+                </a>
+                <a href="mailto:fccarvalho.negocios@gmail.com" class="footer-link">
+                    ✉️ fccarvalho.negocios@gmail.com
+                </a>
+            </div>
+            <p class="footer-copy">
+                © 2026 Francisco Carvalho — FC Transformavidas<br>
+                Transformando vidas através da saúde e finanças
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
